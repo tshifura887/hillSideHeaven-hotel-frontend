@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { deleteRoom, getAllRooms } from '../utils/ApiFunctions';
-import { Col } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import RoomFilter from '../common/RoomFilter';
 import RoomPaginator from '../common/RoomPaginator';
-import { FaTrashAlt , FaEye, FaEdit } from 'react-icons/fa'
+import { FaTrashAlt , FaEye, FaEdit, FaPlus } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
 
 const ExistingRooms = () => {
@@ -81,12 +81,21 @@ const ExistingRooms = () => {
       ) : (
         <>
           <section className='mt-5 mb-5 container'>
-            <div className='d-flex justify-content-centre mb-3 mt-5'>
+            <div className='justify-content-centre mb-3 mt-5'>
               <h2>Existing Rooms</h2>
             </div>
-            <Col md={6} className='mb-3 mb-md-0'>
-              <RoomFilter data={rooms} setFilteredData={setFilteredRooms} />
-            </Col>
+
+            <Row>
+              <Col md={6} className='mb-3 mb-md-0'>
+                <RoomFilter data={rooms} setFilteredData={setFilteredRooms} />
+              </Col>
+
+              <Col md={6} className='d-flex justify-content-end'>
+                <Link to={"/add-room"}>
+                  <FaPlus/> Add New Room
+                </Link>
+              </Col>
+            </Row>
 
             <table className='table table-bordered table-hover'>
               <thead>
@@ -104,10 +113,12 @@ const ExistingRooms = () => {
                     <td>{room.roomType}</td>
                     <td>{room.roomPrice}</td>
                     <td className='gap-2'>
-                      <Link to={`/edit-room/${room.id}`}>
+                      <Link>
                         <span className='btn btn-info btn-sm'>
                           <FaEye/>
                         </span>
+                      </Link>
+                      <Link to={`/edit-room/${room.id}`}>
                         <span className='btn btn-warning btn-sm'>
                          <FaEdit/>
                         </span>
