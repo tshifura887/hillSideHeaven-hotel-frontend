@@ -104,7 +104,7 @@ const AddRoom = () => {
                 Room Photo
               </label>
               <input
-              className='form-control'
+              className='form-control mb-3'
               id="photo"
               name="photo"
               type="file"

@@ -112,7 +112,7 @@ const EditRoom = () => {
                   Photo
                 </label>
                 <input
-                className='form-control'
+                className='form-control mb-3'
                 id="photo"
                 name="photo"
                 type="file"
@@ -120,7 +120,7 @@ const EditRoom = () => {
                 />
 
                 {imagePreview && (
-                  <img src={imagePreview}
+                  <img src={`data:image/png;base64,${imagePreview}`}
                   alt="Room Preview"
                   style={{maxWidth: "400px", maxHeight: "400px"}}
                   className='mb-3'

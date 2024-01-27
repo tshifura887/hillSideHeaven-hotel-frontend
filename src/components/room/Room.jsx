@@ -40,13 +40,13 @@ const Room = () => {
   }
 
   const totalPages = Math.ceil(filteredData.length / roomsPerPage)
-  const renderRooms = () => {
-    const startIndex = (currentPage - 1) * roomsPerPage
-    const endIndex = startIndex + roomsPerPage
 
-    return filteredData.slice(startIndex, endIndex).map((room) => {
+  const renderRooms = () => {
+    const startIndex = (currentPage - 1) * roomsPerPage;
+    const endIndex = startIndex + roomsPerPage;
+    return filteredData.slice(startIndex, endIndex).map((room) => (
       <RoomCard key={room.id} room={room}/>
-    })
+    ));
   }
 
   return (

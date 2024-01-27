@@ -37,6 +37,7 @@ export async function getAllRooms(){
   try {
     const result = await api.get("/rooms/all-rooms")
     return result.data
+    console.log(result.data);
   } catch (error) {
     throw new Error("Error fetching rooms")
   }
@@ -66,5 +67,48 @@ export async function getRoomById(roomId){
     return result.data
   } catch (error) {
     throw new Error(`Error fetching room ${error.message}`)
+  }
+}
+
+export async function bookRoom(roomId, booking){
+  try {
+    const response = await api.post(`/bookings/room/${roomId}/booking`, booking)
+    return response.data
+  } catch (error) {
+    if(error.response && error.response.data){
+      throw new Error(error.response.data)
+    }else {
+     throw new Error(`Error booking room: ${error.message}`)
+    }
+  }
+}
+
+export async function getAllBookings(){
+  try {
+    const result = await api.get("/all-bookings")
+    return result.data
+  } catch (error) {
+    throw new Error(`error fetching bookings: ${error.message}`)
+  }
+}
+
+export async function getBookingByConfirmationCode(confirmationCode){
+  try {
+    const result = await api.get(`/bookings/confirmation/${confirmationCode}`)
+    return result.data
+  } catch (error) {
+    if(error.response && error.response.data){
+      throw new Error(error.response.data)
+    }
+    throw new Error(`Error finding booking : ${error.message}`)
+  }
+}
+
+export async function cancelBooking(bookingId){
+  try {
+    const result = await api.delete(`/bookins/booking/${bookingId}/delete`);
+    return result.data
+  } catch (error) {
+    throw new Error(`Error canceling booking : ${error.message}`)
   }
 }
