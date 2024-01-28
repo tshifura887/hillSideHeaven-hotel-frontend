@@ -10,6 +10,7 @@ import NavBar from './components/layout/NavBar';
 import Footer from './components/layout/Footer';
 import RoomListing from './components/room/RoomListing';
 import Admin from './components/admin/Admin';
+import Checkout from './components/booking/Checkout';
 
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
           <Route path="/add-room" element={<AddRoom/>}></Route>
           <Route path="/browse-all-rooms" element={<RoomListing/>}></Route>
           <Route path="/admin" element={<Admin/>}></Route>
+          <Route path="/book-room/:roomId" element={<Checkout/>}></Route>
+
         </Routes>
       </Router>
       <Footer/>
